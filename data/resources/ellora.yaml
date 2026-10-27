@@ -1,0 +1,31 @@
+name: Ellora MCP
+repo: https://github.com/getellora/agent-skills
+tagline: Check drafts against your voice profile and writing brief, and cut the AI slop before you publish.
+description: Ellora is a remote MCP server that checks drafts against your team's voice profile and writing brief. Each review runs four checks, VoiceDNA, AI Editor, Narrative and Editorial. You start a session, send a draft, get findings to fix, and review the rewrite again. It can also fetch your active voice profiles, writing briefs and saved context. You connect with one URL over Streamable HTTP and sign in with OAuth, with no API key to manage. The free plan covers one person and one voice.
+scope:
+  - global
+  - project
+tags:
+  - mcp-server
+  - remote-mcp
+  - oauth
+  - brand-voice
+  - writing
+  - content-editing
+homepage: https://getellora.com
+installation: |
+  Add the remote server to `opencode.json`:
+
+  ```json
+  {
+    "$schema": "https://opencode.ai/config.json",
+    "mcp": {
+      "ellora": {
+        "type": "remote",
+        "url": "https://api.getellora.com/v1/external/mcp"
+      }
+    }
+  }
+  ```
+
+  Then sign in with `opencode mcp auth ellora`.
