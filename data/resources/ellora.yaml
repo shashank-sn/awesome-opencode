@@ -1,0 +1,56 @@
+name: Ellora MCP
+repo: https://github.com/getellora/agent-skills
+tagline: Brand-voice QA and AI-slop review for every OpenCode draft
+description: >-
+  Ellora is a remote MCP server that reviews a draft against your team's saved
+  voice profile (VoiceDNA), strips generic AI phrasing (AI Editor), and enforces
+  a writing brief and dictionary (Editorial). Add it to opencode.json, sign in
+  with OAuth, and OpenCode gets the ellora_* tools plus a skill that runs the
+  review loop before it shows a draft: start a session, send the draft, fix the
+  findings, and review the rewrite until it passes. It also fetches your active
+  voice profiles, writing briefs and saved context. No API key; the Free plan
+  covers one writer and one voice.
+scope:
+  - global
+  - project
+tags:
+  - mcp-server
+  - remote-mcp
+  - oauth
+  - brand-voice
+  - writing
+  - content-editing
+  - opencode
+homepage: https://getellora.com
+installation: |
+  Add the remote server to `opencode.json` in the project, or to
+  `~/.config/opencode/opencode.json` for every project:
+
+  ```json
+  {
+    "$schema": "https://opencode.ai/config.json",
+    "mcp": {
+      "ellora": {
+        "type": "remote",
+        "url": "https://api.getellora.com/v1/external/mcp",
+        "enabled": true
+      }
+    }
+  }
+  ```
+
+  Sign in:
+
+  ```bash
+  opencode mcp auth ellora
+  ```
+
+  Install the Ellora skill so OpenCode runs the review loop before it shows
+  you a draft:
+
+  ```bash
+  npx skills add getellora/agent-skills -a opencode
+  ```
+
+  Then ask OpenCode to review a draft. The skill triggers on Ellora, brand
+  voice, voice checks, AI slop, and review or rewrite requests.
